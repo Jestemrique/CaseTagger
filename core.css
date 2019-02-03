@@ -1,0 +1,9 @@
+body {
+    width: 300px;
+    min-height: 7em;
+    padding: 5px;
+    font-size: 8pt !important;
+};
+form {
+    padding: 5px;
+}
