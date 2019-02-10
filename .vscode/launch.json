@@ -7,7 +7,7 @@
         
         {
             "type": "chrome",
-            "request": "launch",
+            "request": "attach",
             "name": "Launch Chrome against localhost",
             "url": "https://mstr.lightning.force.com/lightning/o/Case/list?filterName=00B44000005U2J5EAK",
             "webRoot": "${workspaceFolder}"
