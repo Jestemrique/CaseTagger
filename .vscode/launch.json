@@ -6,10 +6,10 @@
     "configurations": [
         
         {
-            "type": "chrome",
+            "type": "Chrome",
             "request": "attach",
             "name": "Launch Chrome against localhost",
-            "url": "https://mstr.lightning.force.com/lightning/o/Case/list?filterName=00B44000005U2J5EAK",
+            "url": "https://mstr.lightning.force.com/lightning/r/Case/5004400000fg5ykAAA/view",
             "webRoot": "${workspaceFolder}"
         }
     ]
