@@ -138,7 +138,11 @@ document.addEventListener('DOMContentLoaded', function() {
                                             },
                       data: [],
                       onChipDelete: (e, data) => {
+                                                  //epr test get caseID
+                                                  cid = ctags[+0].caseID;
+                                                  //End test
                                                   try {
+                                                    //data.textContent -> contains the text of the tag to be deleted.
                                                     updateCTags(e);
                                                     updateTags(ctags,cid);
                                                   }
@@ -147,6 +151,9 @@ document.addEventListener('DOMContentLoaded', function() {
                                                     }
                        },
                        onChipAdd: (e, data) => {
+                                                //epr test get caseID
+                                                cid = ctags[+0].caseID;
+                                                //End test
                                                 try {
                                                   updateCTags(e);
                                                   updateTags(ctags,cid);
