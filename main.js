@@ -127,29 +127,60 @@ function getCaseTags(caseID){
 
 //Endpoints and actions.
 
-function deleteTagInstance(ctags, cid) {
-  let endPoint = apiTagInstanceEndpoint + ctags + "/" + cid;
-  //Metdhod.
-  //method = "DELETE";
-  
-  let headers = new Headers();
-  headers.set("Accept", "application/json");
-  headers.set("Content-Type", "application/json")
-  
-  /*
-  headers = {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-            };
-  */
-  //method = 'DELETE';
+//POST /Taginstances
+function addTagInstance(tagName, caseID){
+  let endPoint = apiTagInstanceEndpoint;
+  let date = new Date();
+  let timeStamp = date.getUTCDate();
+  let eprBody = {
+          name: tagName,
+          caseID: caseID,
+          parentID: "NA",
+          dateCreated: timeStamp,
+          Author: "NA"
+          };
+   let eprHeaders = {
+                     'Content-Type': 'application/json', 
+                     'Accept': 'application/json'
+                    };
+    fetch(endPoint, { method: 'POST',
+                    headers: eprHeaders,
+                    body: JSON.stringify(eprBody)
+                  })
+  .then( (response) => {
+                        if ( response.ok ) {
+                          newCase = false;
+                          return response.json();
+                          }
+                          else {
+                                if (response.status == 404) {
+                                  //assume the 404 was due to non existent case entry.
+                                  newCase = true; 
+                                  return new Promise((resolve)=>{return resolve({"tags" : []})});
+                                } 
+                                else 
+                                  throw new Error("Request unsuccessful")};
+                        }
+  )
+  .catch( (e) => {
+    console.log("Error!!:" + e);
+  });
 
-  //fetch(endPoint, {method: 'DELETE', headers: headers})
+
+
+}//End POST
+
+//DELETE /tagInstance/:tagName/:caseID
+function deleteTagInstance(tagName, caseID) {
+  let endPoint = apiTagInstanceEndpoint + tagName + "/" + caseID;
+  
   fetch(endPoint, {method: 'DELETE', 
-                   headers: new Headers({'Content-Type': 'application/json', 'Accept': 'application/json'})
+                   headers: new Headers({
+                                          'Content-Type': 'application/json', 
+                                          'Accept': 'application/json'
+                                        })
                   })
     .then( (response) => {
-      //console.log("Stop");
       return response.json()
     })
     .then( (json) => {
@@ -159,7 +190,7 @@ function deleteTagInstance(ctags, cid) {
     .catch( (ex) => {
       isUpdating = false;
     })
-}
+}//End DELETE
 
 
 
@@ -175,27 +206,22 @@ document.addEventListener('DOMContentLoaded', function() {
                                             },
                       data: [],
                       onChipDelete: (e, data) => {
-                                                  //epr test get caseID
-                                                  cid = ctags[0].caseID;
+                                                  eprCid = ctags[0].caseID;
                                                   eprTag = data.childNodes[0].nodeValue;
-                                                  //End test
                                                   try {
-                                                    //data.textContent -> contains the text of the tag to be deleted.
-                                                    deleteTagInstance(eprTag, cid);
-                                                    //updateCTags(e);
-                                                    //updateTags(ctags,cid);
+                                                    deleteTagInstance(eprTag, eprCid);
                                                   }
                                                   catch(e){
                                                     console.log(e)
-                                                    }
+                                                  }
                        },
                        onChipAdd: (e, data) => {
-                                                //epr test get caseID
-                                                cid = ctags[+0].caseID;
-                                                //End test
+                                                eprCid = ctags[0].caseID;
+                                                eprTag = data.childNodes[0].nodeValue;
                                                 try {
-                                                  updateCTags(e);
-                                                  updateTags(ctags,cid);
+                                                  addTagInstance(eprTag, eprCid);
+                                                  //updateCTags(e);
+                                                  //updateTags(ctags,cid);
                                                 }
                                                 catch(e){console.log(e)}
                                               }
