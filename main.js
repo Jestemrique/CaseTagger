@@ -129,15 +129,27 @@ function getCaseTags(caseID){
 
 function deleteTagInstance(ctags, cid) {
   let endPoint = apiTagInstanceEndpoint + ctags + "/" + cid;
+  //Metdhod.
+  //method = "DELETE";
+  
+  let headers = new Headers();
+  headers.set("Accept", "application/json");
+  headers.set("Content-Type", "application/json")
+  
+  /*
   headers = {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
             };
-  method = 'DELETE';
+  */
+  //method = 'DELETE';
 
-  fetch(endPoint, method , headers)
+  //fetch(endPoint, {method: 'DELETE', headers: headers})
+  fetch(endPoint, {method: 'DELETE', 
+                   headers: new Headers({'Content-Type': 'application/json', 'Accept': 'application/json'})
+                  })
     .then( (response) => {
-      console.log("Stop");
+      //console.log("Stop");
       return response.json()
     })
     .then( (json) => {
