@@ -70,7 +70,8 @@ function updateTags(tagsData, caseID){
   let cid = ""; 
 
   if (newCase){method = "POST"} else {method = "PUT"; cid = caseID};
-  fetch(apiCaseEndpoint + cid, {
+  //fetch(apiCaseEndpoint + cid, {
+  fetch(apiTagInstanceEndpoint + cid, {  
   method: method,
   headers: {
     'Accept': 'application/json',
@@ -124,6 +125,30 @@ function getCaseTags(caseID){
 };
 
 
+//Endpoints and actions.
+
+function deleteTagInstance(ctags, cid) {
+  let endPoint = apiTagInstanceEndpoint + ctags + "/" + cid;
+  headers = {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+            };
+  method = 'DELETE';
+
+  fetch(endPoint, method , headers)
+    .then( (response) => {
+      console.log("Stop");
+      return response.json()
+    })
+    .then( (json) => {
+      newCase = false;
+      isUpdating = false;
+    })
+    .catch( (ex) => {
+      isUpdating = false;
+    })
+}
+
 
 
 ///hooks:
@@ -139,12 +164,14 @@ document.addEventListener('DOMContentLoaded', function() {
                       data: [],
                       onChipDelete: (e, data) => {
                                                   //epr test get caseID
-                                                  cid = ctags[+0].caseID;
+                                                  cid = ctags[0].caseID;
+                                                  eprTag = data.childNodes[0].nodeValue;
                                                   //End test
                                                   try {
                                                     //data.textContent -> contains the text of the tag to be deleted.
-                                                    updateCTags(e);
-                                                    updateTags(ctags,cid);
+                                                    deleteTagInstance(eprTag, cid);
+                                                    //updateCTags(e);
+                                                    //updateTags(ctags,cid);
                                                   }
                                                   catch(e){
                                                     console.log(e)
