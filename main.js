@@ -254,8 +254,12 @@ document.addEventListener('DOMContentLoaded', function() {
       })
       //End mapping
       
+      //Original code
       options.data = ctagsMaterialize;
       options.autocompleteOptions.data = allTagsMaterialize;
+      //End original code.
+      
+      
       const instances = M.Chips.init(elems, options);
     })
     .catch( (error) => {
