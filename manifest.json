@@ -4,6 +4,7 @@
 "version": "0.8",
 "permissions": ["declarativeContent","storage", "activeTab","tabs"],
 "description": "Helps tag MicroStrategy Technical Support cases",
+"options_page": "options.html",
 "background": {
     "persistent": false,
     "scripts": ["background.js","materialize.min.js"] },
