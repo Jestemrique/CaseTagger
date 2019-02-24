@@ -1,16 +1,3 @@
-//globals
-/* Old globals.
-var cid = "";
-var ctags = "";
-var cData = "";
-var isUpdating = false;
-var backendIP = "10.27.73.135"
-const apiCaseEndpoint = 'http://' + backendIP + ':3000/data/';
-const apiTagEndpoint = 'http://' +backendIP +':3000/tags/';
-var allTags = "";
-var newCase = false;
-*/
-
 /**
  * new Globals
  */
@@ -44,7 +31,7 @@ function evaluateURL(){
     }
   )
   return prom;
-};
+};//End EvaluateURL
 
 
 function getAllTags(){
@@ -58,7 +45,7 @@ function getAllTags(){
                                       };
     })
     return aTags;
-};
+};//End getAllTags()
 
 
 function updateTags(tagsData, caseID){
@@ -88,7 +75,7 @@ function updateTags(tagsData, caseID){
       isUpdating = false;
       
     });
-};
+}; //End updateTags()
 
 
 function updateCTags(e){
@@ -101,7 +88,7 @@ function updateCTags(e){
     throw new Error("Error updating local data store")
   }
 
-};
+};//End updateCTags()
 
 
 function getCaseTags(caseID){
@@ -122,7 +109,7 @@ function getCaseTags(caseID){
                                   throw new Error("Request unsuccessful")};
     })
     return cTags;
-};
+};//End getCaseTags()
 
 
 //Endpoints and actions.
@@ -165,9 +152,6 @@ function addTagInstance(tagName, caseID){
   .catch( (e) => {
     console.log("Error!!:" + e);
   });
-
-
-
 }//End POST
 
 //DELETE /tagInstance/:tagName/:caseID
@@ -264,4 +248,10 @@ document.addEventListener('DOMContentLoaded', function() {
       console.log(error);
     })
 });
+
+
+//Start collapsible settings.
+var collapElem = document.querySelector('.collapsible');
+var collapInstance = M.Collapsible.init(collapElem, {});
+
 
