@@ -253,7 +253,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return container;
       })
       //End mapping
-      
+      console.log(JSON.stringify(allTagsMaterialize, null, 4));
       //Original code
       options.data = ctagsMaterialize;
       options.autocompleteOptions.data = allTagsMaterialize;
