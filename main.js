@@ -245,15 +245,13 @@ document.addEventListener('DOMContentLoaded', function() {
         container.tag = item.name;
         return container;
       })
-
-      //Map to Materialize alltags.
-      let allTagsMaterialize = allTags.map( (item) => {
-        const container = {};
-        container.tag = item.name;
-        return container;
-      })
-      //End mapping
-      console.log(JSON.stringify(allTagsMaterialize, null, 4));
+      
+      let allTagsMaterialize = {};
+      allTags.forEach( (item) => {
+        allTagsMaterialize[`${item.name}`] = null;
+      });
+      //End mapping.
+            
       //Original code
       options.data = ctagsMaterialize;
       options.autocompleteOptions.data = allTagsMaterialize;
