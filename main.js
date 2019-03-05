@@ -118,13 +118,14 @@ function getCaseTags(caseID){
 function addTagInstance(tagName, caseID){
   let endPoint = apiTagInstanceEndpoint;
   let date = new Date();
-  let timeStamp = date.getUTCDate();
+  //let timeStamp = date.getUTCDate();
+  let timeStamp = date.toLocaleString();
   let eprBody = {
           name: tagName,
           caseID: caseID,
           parentID: "NA",
           dateCreated: timeStamp,
-          Author: "NA"
+          Author: "testAuthor"
           };
    let eprHeaders = {
                      'Content-Type': 'application/json', 
