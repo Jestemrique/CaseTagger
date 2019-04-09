@@ -120,6 +120,26 @@ function addTagInstance(tagName, caseID){
   let date = new Date();
   //let timeStamp = date.getUTCDate();
   let timeStamp = date.toLocaleString();
+
+  //Retrieving info from current tab.
+  
+
+
+  chrome.tabs.getSelected(null, function(tab){
+    tabid = tab.id;
+    tabUrl = tab.url;
+    console.log = tabUrl;
+  });
+  chrome.tabs.getSelected(null, function(tab){
+    chrome.tabs.executeScript(tab.id, {code: "alert('test');"}, function(response) {
+        
+    });
+});
+  
+  
+
+
+  //End retrieving informtion from current tab.
   let eprBody = {
           name: tagName,
           caseID: caseID,
