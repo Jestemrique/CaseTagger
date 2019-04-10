@@ -131,14 +131,15 @@ function addTagInstance(tagName, caseID){
     console.log = tabUrl;
     //alert(document.title);
   });
-x
-
+*/
+/*
   chrome.tabs.getSelected(null, function(tab){
     chrome.tabs.executeScript(tab.id, {code: "alert('test'); var x = 1;"}, function(response) {
         
     });
 });
-https://developer.chrome.com/extensions/content_scripts#host-page-communication
+*/
+/*
   chrome.runtime.onMessage.addListener(
     function(message, callback) {
       if (message == "changeColor"){
@@ -147,7 +148,9 @@ https://developer.chrome.com/extensions/content_scripts#host-page-communication
         });
       }
    });
-   
+ */  
+
+//chrome.tabs.executeScript(null, {file: "contentScript.js"});
 
   
   
