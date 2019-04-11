@@ -10,7 +10,7 @@
 "content_scripts": [
     {
         "matches": ["https://mstr.lightning.force.com/lightning/r/Case/*"],
-        "run_at": "document_end",
+        "run_at": "document_idle",
         "js": ["contentScript.js"]
     }
 ],
