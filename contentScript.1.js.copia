@@ -1,33 +1,6 @@
-/*
-document.addEventListener('readystatechange', event => {
-    if (event.target.readyState === 'interactive') {
-      //initLoader();
-      console.log("Interactive: " + document.readyState);
-    }
-    else if (event.target.readyState === 'complete') {
-      //initApp();
-      console.log("Complete: " + document.readyState);  
-      var usuario = window.Aura.initConfig.context.globalValueProviders[0].values.CurrentUser.Email;
-      console.log("USuario: " + usuario);
-    }
-  });
-*/
-/*
-console.log("Start logging!");
-  document.addEventListener("load",() => {
-    console.log ("hola");
-} )
-*/
 
 
-
-
-
-//userID: 005E0000007WyZOIA0
-
-
-
-
+// //alert("Hello from contentScript!");
 
 function DOMtoString(document_root) {
     var html = '',
@@ -57,8 +30,10 @@ function DOMtoString(document_root) {
 }
 
 const source = DOMtoString(document);
+//console.log(source);
 console.log("HERE'S THE MATCH");
-console.log(source.match(/"@microstrategy.com"/));
+console.log(source.match(/"Email":/));
+//console.log(source.match(/"CSRallyGate"/));
 
 
 
