@@ -120,6 +120,43 @@ function addTagInstance(tagName, caseID){
   let date = new Date();
   //let timeStamp = date.getUTCDate();
   let timeStamp = date.toLocaleString();
+
+  //Retrieving info from current tab.
+  
+
+/*
+  chrome.tabs.getSelected(null, function(tab){
+    tabid = tab.id;
+    tabUrl = tab.url;
+    console.log = tabUrl;
+    //alert(document.title);
+  });
+*/
+/*
+  chrome.tabs.getSelected(null, function(tab){
+    chrome.tabs.executeScript(tab.id, {code: "alert('test'); var x = 1;"}, function(response) {
+        
+    });
+});
+*/
+/*
+  chrome.runtime.onMessage.addListener(
+    function(message, callback) {
+      if (message == "changeColor"){
+        chrome.tabs.executeScript({
+          code: 'document.body.style.backgroundColor="orange"'
+        });
+      }
+   });
+ */  
+
+//chrome.tabs.executeScript(null, {file: "contentScript.js"});
+
+  
+  
+
+
+  //End retrieving informtion from current tab.
   let eprBody = {
           name: tagName,
           caseID: caseID,
