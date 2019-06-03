@@ -11,6 +11,13 @@ chrome.runtime.onInstalled.addListener(function() {
       }]);
     });
 
+
+  /*************************** */
+
+  
+
+
+  
     //Adding host settings
     //console.log("hola");
     //chrome.storage.sync.set({apiHost: 'localhost'}, () => {
@@ -18,3 +25,5 @@ chrome.runtime.onInstalled.addListener(function() {
     //})  
     //End host settings.
   });
+
+
