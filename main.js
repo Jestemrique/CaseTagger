@@ -5,8 +5,9 @@ var cid = "";
 var ctags = "";
 var cData = "";
 var isUpdating = false;
-//var backendIP = "localhost"
-var backendIP = "10.27.73.135"
+var backendIP = "localhost"
+//var backendIP = "10.27.73.135"
+
 const apiCaseEndpoint = 'http://' + backendIP + ':3000/api/';
 const apiTagEndpoint = 'http://' +backendIP +':3000/api/tags/';
 const apiTagInstanceEndpoint = 'http://' +backendIP +':3000/api/TagInstances/';
@@ -94,11 +95,16 @@ function updateCTags(e){
 
 function getCaseTags(caseID){
   var getCaseTagsEndPoint = apiTagInstanceEndpoint + caseID + '/tags';
+  console.log(getCaseTagsEndPoint);
   var cTags = fetch(getCaseTagsEndPoint)
     .then( (response) => {
+                          console.log("response.status: " + response.status);
                           if(response.ok){
                             newCase = false;
+                            console.log("response.ok - response.json: " + JSON.stringify(response.json));
                             return response.json();
+                            
+                            
                           }
                           else {
                                 if (response.status == 404) {
